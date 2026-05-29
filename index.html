@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ALI BIN GULSHAD AHAMMED | Cyber Creator</title>
+<title>ALI BIN GULSHAD AHAMMED | PHINCOM</title>
 
 <style>
 
@@ -20,6 +18,8 @@
 html{
     scroll-behavior:smooth;
 }
+
+/* hide scrollbar */
 
 ::-webkit-scrollbar{
     width:0px;
@@ -39,7 +39,7 @@ body{
     linear-gradient(135deg,#000000,#050505,#0b0000,#000000);
 }
 
-/* overlay */
+/* dark overlay */
 
 body::before{
 
@@ -51,8 +51,10 @@ body::before{
     background:
     linear-gradient(
     to bottom,
-    rgba(0,0,0,.55),
+    rgba(0,0,0,.5),
     rgba(0,0,0,.85));
+
+    pointer-events:none;
 
     z-index:-1;
 }
@@ -106,7 +108,7 @@ body::before{
 
     background:
     radial-gradient(circle,
-    rgba(255,0,0,.28) 0%,
+    rgba(255,0,0,.25) 0%,
     rgba(255,0,0,.08) 30%,
     transparent 70%);
 
@@ -116,7 +118,7 @@ body::before{
 
     mix-blend-mode:screen;
 
-    filter:blur(25px);
+    filter:blur(30px);
 }
 
 .mouse-dot{
@@ -217,13 +219,13 @@ section{
 
 h1{
 
-    font-size:90px;
+    font-size:80px;
 
-    margin-bottom:30px;
+    margin-bottom:25px;
 
     color:#ff4444;
 
-    letter-spacing:4px;
+    letter-spacing:5px;
 
     text-shadow:
     0 0 20px rgba(255,0,0,.5);
@@ -235,7 +237,7 @@ h1{
 
     font-size:24px;
 
-    line-height:2.1;
+    line-height:2.2;
 
     color:rgba(255,255,255,.82);
 
@@ -248,7 +250,7 @@ h1{
 
 .section-title{
 
-    font-size:60px;
+    font-size:65px;
 
     margin-bottom:55px;
 
@@ -334,52 +336,57 @@ h1{
 
 .card p{
 
-    line-height:2;
+    line-height:2.1;
 
     color:rgba(255,255,255,.8);
 
     font-size:17px;
 }
 
-/* buttons */
+/* youtube button */
 
-.project-btn{
+.yt-btn{
 
     display:inline-block;
 
     padding:
-    14px
-    28px;
+    15px
+    30px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     text-decoration:none;
 
     color:white;
 
+    background:
+    linear-gradient(
+    135deg,
+    #ff0000,
+    #5c0000);
+
+    border:1px solid rgba(255,0,0,.4);
+
     font-weight:bold;
 
     letter-spacing:2px;
 
-    background:
-    linear-gradient(
-    145deg,
-    #ff0000,
-    #550000);
+    transition:.4s;
 
     box-shadow:
-    0 0 25px rgba(255,0,0,.35);
+    0 0 25px rgba(255,0,0,.25);
 
-    transition:.35s;
 }
 
-.project-btn:hover{
+.yt-btn:hover{
 
     transform:
-    scale(1.08);
+    translateY(-5px)
+    scale(1.05);
 
     box-shadow:
-    0 0 45px rgba(255,0,0,.7);
+    0 0 45px rgba(255,0,0,.45);
+
 }
 
 /* footer */
@@ -402,7 +409,7 @@ h1{
 @media(max-width:900px){
 
     h1{
-        font-size:52px;
+        font-size:45px;
     }
 
     .hero-card{
@@ -426,7 +433,6 @@ h1{
 }
 
 </style>
-
 </head>
 
 <body>
@@ -456,13 +462,20 @@ h1{
 
 <div class="subtitle">
 
-A creative student and futuristic tech experimenter
+Creator of PHINCOM and PHINCOM STUDIOS.
+
+A creative student and tech experimenter
 who builds AI tools,
 games,
-electronics,
 DIY hardware projects,
-VR systems,
-and cyber-style digital experiences.
+electronics systems,
+VR setups,
+and futuristic digital experiences.
+
+Focused on combining coding,
+gaming,
+AI,
+and problem-solving into experimental creations.
 
 </div>
 
@@ -491,9 +504,9 @@ About Me
 <p>
 
 Learning through experimentation,
-rapid prototyping,
-creative coding,
-and hands-on project building.
+creating systems directly,
+debugging problems,
+and improving ideas through creativity and coding.
 
 </p>
 
@@ -506,11 +519,11 @@ and hands-on project building.
 <p>
 
 Combining coding,
-AI,
 gaming,
+AI,
 electronics,
-and futuristic aesthetics
-into powerful cyber-style creations.
+customization,
+and futuristic cyber aesthetics into unique projects.
 
 </p>
 
@@ -518,13 +531,14 @@ into powerful cyber-style creations.
 
 <div class="card">
 
-<h3>🛠 Creative Hardware</h3>
+<h3>🛠 Resourceful Creator</h3>
 
 <p>
 
-Turning old devices into VR systems,
-portable gaming tools,
-and custom experimental setups.
+Turning old hardware into new ideas:
+phones into VR,
+pendrives into gaming tools,
+and low-end PCs into creative setups.
 
 </p>
 
@@ -554,11 +568,11 @@ Projects
 
 <p>
 
-AI assistants with memory,
-themes,
+AI chatbots with login systems,
 voice tools,
-web interfaces,
-and futuristic UI systems.
+themes,
+memory systems,
+and futuristic interfaces.
 
 </p>
 
@@ -566,15 +580,15 @@ and futuristic UI systems.
 
 <div class="card">
 
-<h3>🎯 FPS Games</h3>
+<h3>🎮 FPS + Zombie Games</h3>
 
 <p>
 
-Python FPS and zombie survival games
-with shooting mechanics,
+Python FPS and survival games
+with bots,
+shooting systems,
 menus,
-graphics,
-and AI systems.
+and experimental gameplay mechanics.
 
 </p>
 
@@ -582,14 +596,15 @@ and AI systems.
 
 <div class="card">
 
-<h3>📡 Arduino Systems</h3>
+<h3>📡 Arduino + Electronics</h3>
 
 <p>
 
 Radar displays,
-sensor systems,
-LED effects,
-and creative electronics projects.
+ultrasonic sensors,
+LED systems,
+DIY electronics,
+and embedded hardware experiments.
 
 </p>
 
@@ -597,24 +612,173 @@ and creative electronics projects.
 
 <div class="card">
 
-<h3>♟ Chess Project</h3>
+<h3>🕶 VR + Portable Tech</h3>
 
 <p>
 
-A futuristic cyber-style online chess experience
-with smooth visuals,
-creative UI,
-and experimental web design.
+DIY VR systems from old phones,
+USB gaming tools,
+portable builds,
+and futuristic hardware ideas.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- INTERESTS -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+Interests
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>💻 Coding</h3>
+
+<p>
+
+Building websites,
+games,
+AI tools,
+automation systems,
+and interactive digital projects.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🎮 Gaming</h3>
+
+<p>
+
+FPS games,
+mods,
+custom setups,
+graphics,
+UI effects,
+and immersive gaming experiences.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>⚡ Electronics</h3>
+
+<p>
+
+Arduino systems,
+DIY circuits,
+sensors,
+robotics concepts,
+and experimental hardware projects.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🧠 Creative Tech</h3>
+
+<p>
+
+Combining imagination,
+problem-solving,
+and futuristic cyber aesthetics
+to create unique experiences.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- YOUTUBE -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+YouTube Channels
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>💻 PHINCOM</h3>
+
+<p>
+
+Main tech and experimental channel focused on:
+
+AI tools,
+gaming projects,
+electronics,
+creative coding,
+DIY systems,
+and futuristic creations.
 
 </p>
 
 <br>
 
-<a href="https://chess45.pages.dev/"
+<a 
+href="https://www.youtube.com/@PHINCOM"
 target="_blank"
-class="project-btn">
+class="yt-btn">
 
-OPEN PROJECT
+OPEN CHANNEL
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>🎬 PHINCOM STUDIOS</h3>
+
+<p>
+
+Creative coding and studio-style content featuring:
+
+game experiments,
+interactive projects,
+tech showcases,
+UI ideas,
+and cyber-style development.
+
+</p>
+
+<br>
+
+<a 
+href="https://www.youtube.com/@phincomsudios"
+target="_blank"
+class="yt-btn">
+
+OPEN CHANNEL
 
 </a>
 
@@ -626,58 +790,39 @@ OPEN PROJECT
 
 </section>
 
-<!-- FUTURE -->
+<!-- WEBSITE -->
 
 <section>
 
 <div class="container">
 
 <div class="section-title">
-Future Path
+Projects Online
 </div>
 
 <div class="grid">
 
 <div class="card">
 
-<h3>🚀 Game Development</h3>
+<h3>♟ Chess45</h3>
 
 <p>
 
-Building immersive FPS systems,
-AI gameplay,
-advanced mechanics,
-and futuristic experiences.
+Online experimental chess-style project
+hosted on Cloudflare Pages.
 
 </p>
 
-</div>
+<br>
 
-<div class="card">
+<a 
+href="https://chess45.pages.dev/"
+target="_blank"
+class="yt-btn">
 
-<h3>🤖 AI Systems</h3>
+OPEN WEBSITE
 
-<p>
-
-Creating advanced AI tools,
-automation systems,
-and experimental assistants.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🔧 Embedded Tech</h3>
-
-<p>
-
-Combining hardware and software
-into futuristic electronics projects
-and smart DIY systems.
-
-</p>
+</a>
 
 </div>
 
@@ -689,7 +834,7 @@ and smart DIY systems.
 
 <div class="footer">
 
-⚡ BLACK + RED CYBER AESTHETIC ⚡
+⚡ PHINCOM • BLACK + RED CYBER AESTHETIC ⚡
 
 </div>
 
@@ -749,7 +894,7 @@ document.addEventListener("mousemove",(e)=>{
 
 const hoverItems =
 document.querySelectorAll(
-".card, .logo, .project-btn"
+".card, .logo"
 );
 
 hoverItems.forEach(item=>{
@@ -769,33 +914,6 @@ hoverItems.forEach(item=>{
     });
 
 });
-
-/* VISITOR LOGGER */
-
-const visitorData = {
-
-    browser:navigator.userAgent,
-
-    platform:navigator.platform,
-
-    screen:
-    window.innerWidth + "x" + window.innerHeight,
-
-    language:navigator.language,
-
-    time:new Date().toString()
-
-};
-
-fetch(
-"https://script.google.com/macros/s/AKfycbyFLckXjn6wjCZhv3KToNV8JT7zUrhURNPLBBxmmj_4rfHqeXwnvUuQE53zF_0W0tQG/exec",
-{
-    method:"POST",
-
-    body:JSON.stringify(visitorData)
-})
-.then(r=>r.text())
-.then(data=>console.log(data));
 
 </script>
 

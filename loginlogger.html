@@ -1,114 +1,219 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Login Camera Logger | PHINCOM</title>
 
 <style>
 
+/* =========================
+   GLOBAL
+========================= */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-background:
-radial-gradient(circle at top left,#2a0000 0%,transparent 25%),
-radial-gradient(circle at bottom right,#520000 0%,transparent 25%),
-linear-gradient(135deg,#000,#050505,#0b0000,#000);
-color:white;
-overflow-x:hidden;
+
+    color:white;
+
+    overflow-x:hidden;
+
+    background:
+    radial-gradient(circle at top left,
+    #2a0000 0%,
+    transparent 25%),
+
+    radial-gradient(circle at bottom right,
+    #520000 0%,
+    transparent 25%),
+
+    linear-gradient(
+    135deg,
+    #000,
+    #050505,
+    #0b0000,
+    #000);
+
 }
 
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff0000;
+    border-radius:20px;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.stars{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+}
+
+.star{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:#ff2222;
+
+    animation:float linear infinite;
+
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-1200px);
+    }
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
 header{
-text-align:center;
-padding:100px 20px;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:50px;
+
+}
+
+.hero{
+
+    max-width:1100px;
+
+    padding:60px;
+
+    border-radius:35px;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(255,0,0,.05),
+    rgba(255,255,255,.01));
+
+    border:
+    1px solid rgba(255,0,0,.15);
+
+    backdrop-filter:blur(15px);
+
+}
+
+.logo{
+
+    width:180px;
+    height:180px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:70px;
+
+    background:
+    radial-gradient(circle,
+    #ff3333,
+    #5a0000);
+
+    box-shadow:
+    0 0 60px rgba(255,0,0,.45);
+
+    margin-bottom:40px;
+
 }
 
 h1{
-font-size:60px;
-color:#ff4444;
-margin-bottom:20px;
+
+    font-size:75px;
+
+    color:#ff4444;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 20px rgba(255,0,0,.4);
+
 }
 
 .subtitle{
-max-width:900px;
-margin:auto;
-font-size:20px;
-line-height:2;
-color:#ddd;
+
+    font-size:22px;
+
+    line-height:2;
+
+    color:#dddddd;
+
+    max-width:900px;
+
+    margin:auto;
+
 }
+
+/* =========================
+   TABS
+========================= */
 
 .tab{
-overflow:hidden;
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-background:#111;
-border-top:1px solid rgba(255,0,0,.2);
-border-bottom:1px solid rgba(255,0,0,.2);
-}
-
-.tab button{
-background:none;
-border:none;
-color:white;
-padding:18px 25px;
-cursor:pointer;
-font-size:18px;
-transition:.3s;
-}
-
-.tab button:hover{
-background:#ff0000;
-}
-
-.tab button.active{
-background:#ff0000;
-}
-
-.tabcontent{
-display:none;
-padding:60px 10%;
-}
-
-.card{
-background:rgba(255,0,0,.05);
-border:1px solid rgba(255,0,0,.2);
-padding:30px;
-border-radius:20px;
-margin-bottom:25px;
-}
-
-.card h2{
-color:#ff5555;
-margin-bottom:15px;
-}
-.tab{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-
-    background:#111;
-
-    border-top:1px solid rgba(255,0,0,.2);
-    border-bottom:1px solid rgba(255,0,0,.2);
-
-    padding:10px;
-}
-  .tab{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(140px,1fr));
+    repeat(auto-fit,minmax(150px,1fr));
 
     gap:10px;
 
@@ -116,35 +221,137 @@ margin-bottom:15px;
 
     background:#111;
 
+    border-top:
+    1px solid rgba(255,0,0,.15);
+
+    border-bottom:
+    1px solid rgba(255,0,0,.15);
+
 }
+
+.tab button{
+
+    border:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,0,0,.05);
+
+    transition:.3s;
+
+    font-size:16px;
+
+}
+
+.tab button:hover{
+
+    background:#ff0000;
+
+}
+
+.tab button.active{
+
+    background:#ff0000;
+
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.tabcontent{
+
+    display:none;
+
+    padding:80px 10%;
+
+}
+
+.card{
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(255,0,0,.05),
+    rgba(255,255,255,.01));
+
+    border:
+    1px solid rgba(255,0,0,.15);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    margin-bottom:30px;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.card h2{
+
+    color:#ff5555;
+
+    margin-bottom:20px;
+
+}
+
 .card p{
-line-height:2;
-color:#ddd;
+
+    line-height:2;
+
+    color:#dddddd;
+
 }
 
 .btn{
-display:inline-block;
-padding:14px 28px;
-background:#ff0000;
-color:white;
-text-decoration:none;
-border-radius:10px;
-margin-top:15px;
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:
+    14px 28px;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff0000,
+    #600000);
+
 }
 
-pre{
-background:#050505;
-padding:20px;
-border-radius:10px;
-overflow:auto;
-color:#00ff88;
-margin-top:15px;
-}
+/* =========================
+   MOBILE
+========================= */
 
-footer{
-text-align:center;
-padding:50px;
-color:#888;
+@media(max-width:900px){
+
+    h1{
+        font-size:45px;
+    }
+
+    .subtitle{
+        font-size:18px;
+    }
+
+    .hero{
+        padding:35px;
+    }
+
 }
 
 </style>
@@ -153,14 +360,29 @@ color:#888;
 
 <body>
 
+<div class="stars" id="stars"></div>
+
 <header>
 
-<h1>📷 Login Camera Logger</h1>
+<div class="hero">
+
+<div class="logo">
+📷
+</div>
+
+<h1>Login Camera Logger</h1>
 
 <div class="subtitle">
 
-A Python webcam logging project that captures
-timestamped images and stores logs automatically.
+A Python webcam logging project that
+captures timestamped images,
+creates log files,
+supports EXE builds,
+and demonstrates automation,
+computer vision,
+and Windows deployment.
+
+</div>
 
 </div>
 
@@ -168,227 +390,158 @@ timestamped images and stores logs automatically.
 
 <div class="tab">
 
-<button class="tablinks" onclick="openTab(event,'Overview')">Overview</button>
+<button class="tablinks"
+onclick="openTab(event,'Overview')"
+id="defaultOpen">
 
-<button class="tablinks" onclick="openTab(event,'Features')">Features</button>
+Overview
 
-<button class="tablinks" onclick="openTab(event,'Screenshots')">Screenshots</button>
+</button>
 
-<button class="tablinks" onclick="openTab(event,'Installation')">Installation</button>
+<button class="tablinks"
+onclick="openTab(event,'Features')">
 
-<button class="tablinks" onclick="openTab(event,'Configuration')">Configuration</button>
+Features
 
-<button class="tablinks" onclick="openTab(event,'HowItWorks')">How It Works</button>
+</button>
 
-<button class="tablinks" onclick="openTab(event,'Startup')">Startup</button>
+<button class="tablinks"
+onclick="openTab(event,'Screenshots')">
 
-<button class="tablinks" onclick="openTab(event,'Download')">Download</button>
+Screenshots
 
-<button class="tablinks" onclick="openTab(event,'Roadmap')">Roadmap</button>
+</button>
 
-<button class="tablinks" onclick="openTab(event,'Changelog')">Updates</button>
+<button class="tablinks"
+onclick="openTab(event,'Installation')">
 
-<button class="tablinks" onclick="openTab(event,'Tech')">Technologies</button>
+Installation
 
-<button class="tablinks" onclick="openTab(event,'FAQ')">FAQ</button>
+</button>
 
-<button class="tablinks" onclick="openTab(event,'Developer')">Developer</button>
+<button class="tablinks"
+onclick="openTab(event,'Configuration')">
+
+Configuration
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'HowItWorks')">
+
+How It Works
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Startup')">
+
+Startup
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Download')">
+
+Download
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Roadmap')">
+
+Roadmap
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Changelog')">
+
+Updates
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Tech')">
+
+Technologies
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'FAQ')">
+
+FAQ
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Developer')">
+
+Developer
+
+</button>
 
 </div>
-<div id="Features" class="tabcontent">
+
+<!-- PART 2 STARTS HERE -->
+<!-- =======================================
+OVERVIEW
+======================================= -->
+
+<div id="Overview" class="tabcontent">
 
 <div class="card">
 
-<h2>📷 Camera System</h2>
-
-<p>
-Automatic webcam initialization,
-multiple image reads for better quality,
-timestamped captures,
-and JPG export support.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>📝 Logging System</h2>
-
-<p>
-Automatic log file creation,
-username tracking,
-timestamp recording,
-capture history,
-and readable text logs.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>⚡ Automation</h2>
-
-<p>
-Automatic startup capture,
-sleep/wake monitoring,
-folder creation,
-and background operation.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>💾 Storage</h2>
-
-<p>
-Custom save folders,
-automatic directory creation,
-organized file naming,
-and easy backup support.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🚀 Deployment</h2>
-
-<p>
-PyInstaller support,
-standalone EXE generation,
-startup folder integration,
-and portable distribution.
-</p>
-
-</div>
-
-</div>
-<div id="Configuration" class="tabcontent">
-
-<div class="card">
-
-<h2>Save Folder</h2>
-
-<pre>
-SAVE_FOLDER =
-os.path.join(
-os.environ["USERPROFILE"],
-"Documents",
-"LoginCaptures"
-)
-</pre>
-
-</div>
-
-<div class="card">
-
-<h2>Image Naming</h2>
-
-<pre>
-image_name =
-f"login_{timestamp}.jpg"
-</pre>
-
-</div>
-
-</div>
-<div id="Download" class="tabcontent">
-
-<div class="card">
-
-<h2>Source Code</h2>
-
-<a href="YOUR_GITHUB_URL"
-class="btn">
-
-GitHub Repository
-
-</a>
-
-</div>
-
-<div class="card">
-
-<h2>Project Website</h2>
-
-<a href="https://ali-bin-gulshad-ahammed.pages.dev/loginlogger.html"
-class="btn">
-
-Open Website
-
-</a>
-
-</div>
-
-</div>
-<div id="Changelog" class="tabcontent">
-
-<div class="card">
-
-<h2>v1.0</h2>
-
-<p>
-
-Initial release
-
-<br>
-
-• Webcam capture
-
-<br>
-
-• Logging
-
-<br>
-
-• Timestamp system
-
-</p>
-
-</div>
-
-</div>
-<!-- HOME -->
-
-<div id="Home" class="tabcontent">
-
-<div class="card">
-
-<h2>About</h2>
+<h2>📷 What Is Login Camera Logger?</h2>
 
 <p>
 
 Login Camera Logger is a Python project
-that captures webcam images,
-creates timestamped files,
-and records activity logs.
+designed to automatically capture webcam images
+and create activity logs.
+
+The application demonstrates:
+
+<br><br>
+
+• Webcam Integration
+
+<br>
+
+• Image Processing
+
+<br>
+
+• Timestamp Generation
+
+<br>
+
+• File Management
+
+<br>
+
+• Windows Automation
+
+<br>
+
+• EXE Packaging
+
+<br>
+
+• Startup Integration
 
 </p>
 
-<a
-href="/"
-class="btn">
-
-Back To Portfolio
-
-</a>
-
 </div>
-
-</div>
-
-<!-- FEATURES -->
-
-<div id="Features" class="tabcontent">
 
 <div class="card">
 
-<h2>Project Features</h2>
+<h2>⚡ Main Highlights</h2>
 
 <p>
 
-📷 Webcam Image Capture
+📷 Automatic Webcam Capture
 
 <br><br>
 
@@ -412,7 +565,25 @@ Back To Portfolio
 
 <br><br>
 
-⚡ Lightweight and Fast
+⚡ Lightweight Design
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎯 Purpose</h2>
+
+<p>
+
+The project was built to learn how
+Python can interact with hardware,
+manage files,
+and automate tasks.
+
+It combines multiple Python concepts
+into a single practical application.
 
 </p>
 
@@ -420,71 +591,593 @@ Back To Portfolio
 
 </div>
 
-<!-- INSTALL -->
+<!-- =======================================
+FEATURES
+======================================= -->
 
-<div id="Install" class="tabcontent">
+<div id="Features" class="tabcontent">
 
 <div class="card">
 
-<h2>Install Dependencies</h2>
+<h2>📷 Camera System</h2>
+
+<p>
+
+Automatic webcam initialization.
+
+<br><br>
+
+Multiple camera reads for improved image quality.
+
+<br><br>
+
+JPG image export.
+
+<br><br>
+
+Fast capture process.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Logging System</h2>
+
+<p>
+
+Automatically creates a log file.
+
+<br><br>
+
+Records timestamp information.
+
+<br><br>
+
+Records username information.
+
+<br><br>
+
+Creates a history of captures.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>⚡ Automation Features</h2>
+
+<p>
+
+Automatic startup capture.
+
+<br><br>
+
+Folder creation.
+
+<br><br>
+
+Background monitoring.
+
+<br><br>
+
+Automatic file naming.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📁 Storage System</h2>
+
+<p>
+
+Custom save locations.
+
+<br><br>
+
+Automatic folder generation.
+
+<br><br>
+
+Organized file structure.
+
+<br><br>
+
+Easy backup support.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🚀 Deployment Features</h2>
+
+<p>
+
+Standalone EXE creation.
+
+<br><br>
+
+Startup folder support.
+
+<br><br>
+
+Portable deployment.
+
+<br><br>
+
+Easy installation.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- =======================================
+SCREENSHOTS
+======================================= -->
+
+<div id="Screenshots" class="tabcontent">
+
+<div class="card">
+
+<h2>📸 Screenshot Placeholder</h2>
+
+<p>
+
+Replace this section with screenshots
+of your application.
+
+</p>
+
+<img
+src="images/screenshot1.png"
+style="
+width:100%;
+border-radius:15px;
+margin-top:20px;">
+
+</div>
+
+<div class="card">
+
+<h2>📝 Example Log Output</h2>
 
 <pre>
+
+[2026-08-20 15:30:45]
+
+User: Ali
+
+Photo:
+login_2026-08-20_15-30-45.jpg
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>📷 Example Image</h2>
+
+<p>
+
+Captured images are saved using timestamps.
+
+</p>
+
+<pre>
+
+login_2026-08-20_15-30-45.jpg
+
+</pre>
+
+</div>
+
+</div>
+
+<!-- =======================================
+INSTALLATION
+======================================= -->
+
+<div id="Installation" class="tabcontent">
+
+<div class="card">
+
+<h2>📥 Install Python</h2>
+
+<p>
+
+Install Python 3.8 or newer.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📦 Install Dependencies</h2>
+
+<pre>
+
 pip install opencv-python
+
 </pre>
 
-<h2>Run Project</h2>
+</div>
+
+<div class="card">
+
+<h2>▶ Run Application</h2>
 
 <pre>
+
 python login_logger.py
+
 </pre>
 
-<h2>Change Save Folder</h2>
+</div>
+
+<div class="card">
+
+<h2>🔍 Verify Installation</h2>
 
 <pre>
+
+python --version
+
+pip show opencv-python
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>📋 Requirements</h2>
+
+<p>
+
+Windows 10/11
+
+<br><br>
+
+Python 3.8+
+
+<br><br>
+
+Webcam
+
+<br><br>
+
+OpenCV
+
+<br><br>
+
+50MB Free Storage
+
+</p>
+
+</div>
+
+</div>
+
+<!-- PART 3 STARTS HERE -->
+<!-- =======================================
+CONFIGURATION
+======================================= -->
+
+<div id="Configuration" class="tabcontent">
+
+<div class="card">
+
+<h2>📁 Save Folder</h2>
+
+<p>
+
+Choose where images and logs are stored.
+
+</p>
+
+<pre>
+
 SAVE_FOLDER = os.path.join(
-os.environ["USERPROFILE"],
-"Documents",
-"LoginCaptures"
+    os.environ["USERPROFILE"],
+    "Documents",
+    "LoginCaptures"
 )
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Log File Name</h2>
+
+<pre>
+
+LOG_FILE = os.path.join(
+    SAVE_FOLDER,
+    "login_log.txt"
+)
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>📷 Image Naming</h2>
+
+<pre>
+
+image_name =
+f"login_{timestamp}.jpg"
+
+</pre>
+
+<p>
+
+Example:
+
+</p>
+
+<pre>
+
+login_2026-08-20_15-30-45.jpg
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>🎥 Camera Resolution</h2>
+
+<pre>
+
+cap.set(
+cv2.CAP_PROP_FRAME_WIDTH,
+1280
+)
+
+cap.set(
+cv2.CAP_PROP_FRAME_HEIGHT,
+720
+)
+
 </pre>
 
 </div>
 
 </div>
 
-<!-- DOWNLOAD -->
+<!-- =======================================
+HOW IT WORKS
+======================================= -->
+
+<div id="HowItWorks" class="tabcontent">
+
+<div class="card">
+
+<h2>⚙ Complete Workflow</h2>
+
+<p>
+
+1️⃣ Program Starts
+
+<br><br>
+
+2️⃣ Webcam Initializes
+
+<br><br>
+
+3️⃣ Username Detected
+
+<br><br>
+
+4️⃣ Timestamp Generated
+
+<br><br>
+
+5️⃣ Image Captured
+
+<br><br>
+
+6️⃣ Image Saved
+
+<br><br>
+
+7️⃣ Log Updated
+
+<br><br>
+
+8️⃣ Monitoring Continues
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📷 Image Capture Process</h2>
+
+<p>
+
+The application opens the webcam,
+waits briefly for stabilization,
+captures several frames,
+then saves the final image.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Logging Process</h2>
+
+<pre>
+
+[2026-08-20 15:30:45]
+
+User: Ali
+
+Photo:
+login_2026-08-20_15-30-45.jpg
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>📂 Generated Files</h2>
+
+<pre>
+
+LoginCaptures/
+
+├── login_log.txt
+
+├── login_2026-08-20.jpg
+
+├── login_2026-08-21.jpg
+
+└── login_2026-08-22.jpg
+
+</pre>
+
+</div>
+
+</div>
+
+<!-- =======================================
+STARTUP
+======================================= -->
+
+<div id="Startup" class="tabcontent">
+
+<div class="card">
+
+<h2>🚀 Startup Support</h2>
+
+<p>
+
+Login Camera Logger can automatically
+launch when Windows starts.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📦 Build EXE</h2>
+
+<pre>
+
+pip install pyinstaller
+
+pyinstaller --onefile login_logger.py
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>📁 Open Startup Folder</h2>
+
+<pre>
+
+Win + R
+
+shell:startup
+
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>🔗 Create Shortcut</h2>
+
+<p>
+
+Create a shortcut to:
+
+</p>
+
+<pre>
+
+login_logger.exe
+
+</pre>
+
+<p>
+
+Move the shortcut into the
+Startup folder.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>⚡ Startup Flow</h2>
+
+<pre>
+
+Windows Starts
+
+↓
+
+User Logs In
+
+↓
+
+Startup Folder Runs
+
+↓
+
+Login Logger Starts
+
+↓
+
+Camera Initializes
+
+↓
+
+Monitoring Begins
+
+</pre>
+
+</div>
+
+</div>
+
+<!-- =======================================
+DOWNLOAD
+======================================= -->
 
 <div id="Download" class="tabcontent">
 
 <div class="card">
 
-<h2>Create EXE</h2>
-
-<pre>
-pip install pyinstaller
-
-pyinstaller --onefile login_logger.py
-</pre>
-
-<h2>Output</h2>
-
-<pre>
-dist/login_logger.exe
-</pre>
-
-<h2>Run On Startup</h2>
-
-<pre>
-Win + R
-
-shell:startup
-</pre>
+<h2>💻 Source Code</h2>
 
 <p>
 
-Create a shortcut to
-login_logger.exe
-and place it in the Startup folder.
+Download the source code from GitHub.
 
 </p>
 
@@ -493,7 +1186,48 @@ href="https://github.com/Phincom/LoginCapture"
 target="_blank"
 class="btn">
 
-GitHub Repository
+Open GitHub
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>🌐 Project Website</h2>
+
+<p>
+
+View the official project page.
+
+</p>
+
+<a
+href="https://ali-bin-gulshad-ahammed.pages.dev/loginlogger.html"
+target="_blank"
+class="btn">
+
+Open Website
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>📦 EXE Download</h2>
+
+<p>
+
+Add your EXE download link here.
+
+</p>
+
+<a
+href="#"
+class="btn">
+
+Download EXE
 
 </a>
 
@@ -501,18 +1235,262 @@ GitHub Repository
 
 </div>
 
-<!-- FAQ -->
+<!-- =======================================
+ROADMAP
+======================================= -->
+
+<div id="Roadmap" class="tabcontent">
+
+<div class="card">
+
+<h2>🛣 Version 1.1</h2>
+
+<p>
+
+🔄 Better Wake Detection
+
+<br><br>
+
+🔄 Improved Logging
+
+<br><br>
+
+🔄 Cleaner Output
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🛣 Version 1.2</h2>
+
+<p>
+
+🔄 Multiple Camera Support
+
+<br><br>
+
+🔄 Camera Selection Menu
+
+<br><br>
+
+🔄 Higher Resolution Options
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🛣 Version 2.0</h2>
+
+<p>
+
+🔄 Settings Interface
+
+<br><br>
+
+🔄 Capture History Viewer
+
+<br><br>
+
+🔄 Export Logs
+
+<br><br>
+
+🔄 Statistics Dashboard
+
+<br><br>
+
+🔄 Theme Support
+
+</p>
+
+</div>
+
+</div>
+
+<!-- PART 4 STARTS HERE -->
+<!-- =======================================
+CHANGELOG
+======================================= -->
+
+<div id="Changelog" class="tabcontent">
+
+<div class="card">
+
+<h2>🚀 Version 1.0</h2>
+
+<p>
+
+Initial Release
+
+<br><br>
+
+✅ Webcam Capture
+
+<br>
+
+✅ Timestamped Images
+
+<br>
+
+✅ Automatic Logging
+
+<br>
+
+✅ Custom Save Folder
+
+<br>
+
+✅ EXE Support
+
+<br>
+
+✅ Startup Integration
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📅 Future Updates</h2>
+
+<p>
+
+Version 1.1
+
+<br><br>
+
+🔄 Better Wake Detection
+
+<br>
+
+🔄 Cleaner Logs
+
+<br>
+
+🔄 Faster Startup
+
+<br>
+
+🔄 Improved Stability
+
+</p>
+
+</div>
+
+</div>
+
+<!-- =======================================
+TECHNOLOGIES
+======================================= -->
+
+<div id="Tech" class="tabcontent">
+
+<div class="card">
+
+<h2>🐍 Python</h2>
+
+<p>
+
+The core programming language
+used for application logic,
+automation,
+file handling,
+and system interaction.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📷 OpenCV</h2>
+
+<p>
+
+Provides webcam access,
+image capture,
+frame processing,
+and image saving capabilities.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📅 Datetime Module</h2>
+
+<p>
+
+Used to generate timestamps
+for filenames and log entries.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📂 OS Module</h2>
+
+<p>
+
+Handles folder creation,
+path management,
+and file operations.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>👤 Getpass</h2>
+
+<p>
+
+Retrieves the current
+Windows username.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📦 PyInstaller</h2>
+
+<p>
+
+Converts Python code
+into a standalone executable.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- =======================================
+FAQ
+======================================= -->
 
 <div id="FAQ" class="tabcontent">
 
 <div class="card">
 
-<h2>Camera Not Working?</h2>
+<h2>❓ What does Login Camera Logger do?</h2>
 
 <p>
 
-Make sure your webcam is connected
-and not being used by another application.
+Captures webcam photos,
+saves timestamped images,
+and creates log entries.
 
 </p>
 
@@ -520,12 +1498,14 @@ and not being used by another application.
 
 <div class="card">
 
-<h2>Where Are Images Saved?</h2>
+<h2>❓ Does it require internet?</h2>
 
 <p>
 
-Images are saved to the folder
-specified by SAVE_FOLDER.
+No.
+
+Everything runs locally
+on your computer.
 
 </p>
 
@@ -533,28 +1513,76 @@ specified by SAVE_FOLDER.
 
 <div class="card">
 
-<h2>How Do I Build An EXE?</h2>
+<h2>❓ Can I change the save folder?</h2>
 
 <p>
 
-Install PyInstaller and run:
+Yes.
+
+Edit the SAVE_FOLDER variable.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Can I create an EXE?</h2>
+
+<p>
+
+Yes.
+
+Use PyInstaller.
 
 </p>
 
 <pre>
+
 pyinstaller --onefile login_logger.py
+
 </pre>
 
 </div>
 
 <div class="card">
 
-<h2>Does It Work On Windows?</h2>
+<h2>❓ Does it support multiple cameras?</h2>
 
 <p>
 
-Yes. The project is designed
-for Windows systems.
+Currently it uses
+the default webcam.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Does it work offline?</h2>
+
+<p>
+
+Yes.
+
+No internet connection
+is required.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>❓ Is data uploaded anywhere?</h2>
+
+<p>
+
+No.
+
+Images and logs remain
+on your computer.
 
 </p>
 
@@ -562,48 +1590,207 @@ for Windows systems.
 
 </div>
 
+<!-- =======================================
+DEVELOPER
+======================================= -->
+
+<div id="Developer" class="tabcontent">
+
+<div class="card">
+
+<h2>👨‍💻 Developer</h2>
+
+<p>
+
+ALI BIN GULSHAD AHAMMED
+
+<br><br>
+
+Founder of PHINCOM
+
+<br><br>
+
+Creator of PHINCOM STUDIOS
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🌐 Official Links</h2>
+
+<p>
+
+Portfolio Website
+
+<br><br>
+
+https://ali-bin-gulshad-ahammed.pages.dev
+
+<br><br>
+
+Project Website
+
+<br><br>
+
+https://ali-bin-gulshad-ahammed.pages.dev/loginlogger.html
+
+<br><br>
+
+YouTube
+
+<br><br>
+
+https://www.youtube.com/@PHINCOM
+
+<br><br>
+
+PHINCOM STUDIOS
+
+<br><br>
+
+https://www.youtube.com/@phincomsudios
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>⚡ Interests</h2>
+
+<p>
+
+🤖 Artificial Intelligence
+
+<br><br>
+
+🎮 Game Development
+
+<br><br>
+
+💻 Programming
+
+<br><br>
+
+📡 Electronics
+
+<br><br>
+
+🕶 VR Technology
+
+</p>
+
+</div>
+
+</div>
+
+<!-- =======================================
+FOOTER
+======================================= -->
+
 <footer>
 
-⚡ PHINCOM • LOGIN CAMERA LOGGER ⚡
+⚡ LOGIN CAMERA LOGGER ⚡
+
+<br><br>
+
+Made with Python ❤️ by PHINCOM
 
 </footer>
 
+<!-- =======================================
+JAVASCRIPT
+======================================= -->
+
 <script>
+
+/* Tab System */
 
 function openTab(evt, tabName){
 
-var i;
-var tabcontent;
-var tablinks;
+let tabcontent =
+document.getElementsByClassName(
+"tabcontent"
+);
 
-tabcontent =
-document.getElementsByClassName("tabcontent");
+for(let i=0;i<tabcontent.length;i++){
 
-for(i=0;i<tabcontent.length;i++){
-
-tabcontent[i].style.display="none";
+tabcontent[i].style.display =
+"none";
 
 }
 
-tablinks =
-document.getElementsByClassName("tablinks");
+let tablinks =
+document.getElementsByClassName(
+"tablinks"
+);
 
-for(i=0;i<tablinks.length;i++){
+for(let i=0;i<tablinks.length;i++){
 
 tablinks[i].className =
-tablinks[i].className.replace(" active","");
+tablinks[i].className.replace(
+" active",
+""
+);
 
 }
 
-document.getElementById(tabName)
-.style.display="block";
+document.getElementById(
+tabName
+).style.display =
+"block";
 
-evt.currentTarget.className += " active";
+evt.currentTarget.className +=
+" active";
+
 }
 
-document.getElementById("defaultOpen").click();
+/* Open Overview by Default */
+
+document.getElementById(
+"defaultOpen"
+).click();
+
+/* Animated Stars */
+
+const stars =
+document.getElementById(
+"stars"
+);
+
+for(let i=0;i<250;i++){
+
+let star =
+document.createElement(
+"div"
+);
+
+star.classList.add(
+"star"
+);
+
+star.style.left =
+Math.random()*100 + "vw";
+
+star.style.top =
+Math.random()*100 + "vh";
+
+star.style.opacity =
+Math.random();
+
+star.style.animationDuration =
+5 + Math.random()*12 + "s";
+
+stars.appendChild(
+star
+);
+
+}
 
 </script>
 
 </body>
+
 </html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login Camera Logger | PHINCOM</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top left,#2a0000 0%,transparent 25%),
+radial-gradient(circle at bottom right,#520000 0%,transparent 25%),
+linear-gradient(135deg,#000,#050505,#0b0000,#000);
+color:white;
+overflow-x:hidden;
+}
+
+header{
+text-align:center;
+padding:100px 20px;
+}
+
+h1{
+font-size:60px;
+color:#ff4444;
+margin-bottom:20px;
+}
+
+.subtitle{
+max-width:900px;
+margin:auto;
+font-size:20px;
+line-height:2;
+color:#ddd;
+}
+
+.tab{
+overflow:hidden;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+background:#111;
+border-top:1px solid rgba(255,0,0,.2);
+border-bottom:1px solid rgba(255,0,0,.2);
+}
+
+.tab button{
+background:none;
+border:none;
+color:white;
+padding:18px 25px;
+cursor:pointer;
+font-size:18px;
+transition:.3s;
+}
+
+.tab button:hover{
+background:#ff0000;
+}
+
+.tab button.active{
+background:#ff0000;
+}
+
+.tabcontent{
+display:none;
+padding:60px 10%;
+}
+
+.card{
+background:rgba(255,0,0,.05);
+border:1px solid rgba(255,0,0,.2);
+padding:30px;
+border-radius:20px;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#ff5555;
+margin-bottom:15px;
+}
+
+.card p{
+line-height:2;
+color:#ddd;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+background:#ff0000;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin-top:15px;
+}
+
+pre{
+background:#050505;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+color:#00ff88;
+margin-top:15px;
+}
+
+footer{
+text-align:center;
+padding:50px;
+color:#888;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📷 Login Camera Logger</h1>
+
+<div class="subtitle">
+
+A Python webcam logging project that captures
+timestamped images and stores logs automatically.
+
+</div>
+
+</header>
+
+<div class="tab">
+
+<button class="tablinks"
+onclick="openTab(event,'Home')"
+id="defaultOpen">
+
+Home
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Features')">
+
+Features
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Install')">
+
+Install
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'Download')">
+
+Download
+
+</button>
+
+<button class="tablinks"
+onclick="openTab(event,'FAQ')">
+
+FAQ
+
+</button>
+
+</div>
+
+<!-- HOME -->
+
+<div id="Home" class="tabcontent">
+
+<div class="card">
+
+<h2>About</h2>
+
+<p>
+
+Login Camera Logger is a Python project
+that captures webcam images,
+creates timestamped files,
+and records activity logs.
+
+</p>
+
+<a
+href="/"
+class="btn">
+
+Back To Portfolio
+
+</a>
+
+</div>
+
+</div>
+
+<!-- FEATURES -->
+
+<div id="Features" class="tabcontent">
+
+<div class="card">
+
+<h2>Project Features</h2>
+
+<p>
+
+📷 Webcam Image Capture
+
+<br><br>
+
+🕒 Timestamped Filenames
+
+<br><br>
+
+📝 Automatic Log Creation
+
+<br><br>
+
+📁 Custom Save Folder
+
+<br><br>
+
+🚀 EXE Support
+
+<br><br>
+
+💻 Windows Compatible
+
+<br><br>
+
+⚡ Lightweight and Fast
+
+</p>
+
+</div>
+
+</div>
+
+<!-- INSTALL -->
+
+<div id="Install" class="tabcontent">
+
+<div class="card">
+
+<h2>Install Dependencies</h2>
+
+<pre>
+pip install opencv-python
+</pre>
+
+<h2>Run Project</h2>
+
+<pre>
+python login_logger.py
+</pre>
+
+<h2>Change Save Folder</h2>
+
+<pre>
+SAVE_FOLDER = os.path.join(
+os.environ["USERPROFILE"],
+"Documents",
+"LoginCaptures"
+)
+</pre>
+
+</div>
+
+</div>
+
+<!-- DOWNLOAD -->
+
+<div id="Download" class="tabcontent">
+
+<div class="card">
+
+<h2>Create EXE</h2>
+
+<pre>
+pip install pyinstaller
+
+pyinstaller --onefile login_logger.py
+</pre>
+
+<h2>Output</h2>
+
+<pre>
+dist/login_logger.exe
+</pre>
+
+<h2>Run On Startup</h2>
+
+<pre>
+Win + R
+
+shell:startup
+</pre>
+
+<p>
+
+Create a shortcut to
+login_logger.exe
+and place it in the Startup folder.
+
+</p>
+
+<a
+href="https://github.com/Phincom/LoginCapture"
+target="_blank"
+class="btn">
+
+GitHub Repository
+
+</a>
+
+</div>
+
+</div>
+
+<!-- FAQ -->
+
+<div id="FAQ" class="tabcontent">
+
+<div class="card">
+
+<h2>Camera Not Working?</h2>
+
+<p>
+
+Make sure your webcam is connected
+and not being used by another application.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Where Are Images Saved?</h2>
+
+<p>
+
+Images are saved to the folder
+specified by SAVE_FOLDER.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>How Do I Build An EXE?</h2>
+
+<p>
+
+Install PyInstaller and run:
+
+</p>
+
+<pre>
+pyinstaller --onefile login_logger.py
+</pre>
+
+</div>
+
+<div class="card">
+
+<h2>Does It Work On Windows?</h2>
+
+<p>
+
+Yes. The project is designed
+for Windows systems.
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+⚡ PHINCOM • LOGIN CAMERA LOGGER ⚡
+
+</footer>
+
+<script>
+
+function openTab(evt, tabName){
+
+var i;
+var tabcontent;
+var tablinks;
+
+tabcontent =
+document.getElementsByClassName("tabcontent");
+
+for(i=0;i<tabcontent.length;i++){
+
+tabcontent[i].style.display="none";
+
+}
+
+tablinks =
+document.getElementsByClassName("tablinks");
+
+for(i=0;i<tablinks.length;i++){
+
+tablinks[i].className =
+tablinks[i].className.replace(" active","");
+
+}
+
+document.getElementById(tabName)
+.style.display="block";
+
+evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html>

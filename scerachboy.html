@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Assistant Pro</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<meta name="theme-color" content="#1db954">
+
+<style>
+
+:root{
+--bg-dark:#0f172a;
+--card-dark:#1e293b;
+--text-dark:#ffffff;
+
+--bg-light:#f1f5f9;
+--card-light:#ffffff;
+--text-light:#020617;
+
+--primary:#1db954;
+}
+
+/* Theme Variables */
+body.dark{
+--bg:var(--bg-dark);
+--card:var(--card-dark);
+--text:var(--text-dark);
+}
+
+body.light{
+--bg:var(--bg-light);
+--card:var(--card-light);
+--text:var(--text-light);
+}
+
+/* Base */
+
+body{
+margin:0;
+font-family:Segoe UI,Arial;
+background:var(--bg);
+color:var(--text);
+transition:0.3s;
+}
+
+/* Header */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px;
+background:#020617;
+color:white;
+}
+
+/* Toggle */
+
+.toggle-btn{
+background:var(--primary);
+border:none;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+color:white;
+}
+
+/* Clock */
+
+.clock{
+font-family:monospace;
+}
+
+/* Layout */
+
+.container{
+max-width:800px;
+margin:auto;
+padding:10px;
+}
+
+/* Chat */
+
+#chat{
+height:60vh;
+background:#020617;
+border-radius:15px;
+padding:10px;
+overflow-y:auto;
+}
+
+.msg{
+padding:10px;
+border-radius:10px;
+margin:8px 0;
+max-width:80%;
+}
+
+.user{
+background:var(--primary);
+margin-left:auto;
+}
+
+.bot{
+background:#334155;
+}
+
+/* Input */
+
+.input-row{
+display:flex;
+gap:5px;
+margin-top:10px;
+}
+
+input{
+flex:1;
+padding:12px;
+border-radius:10px;
+border:none;
+font-size:16px;
+}
+
+button{
+padding:12px;
+border-radius:10px;
+border:none;
+cursor:pointer;
+}
+
+/* Typing animation */
+
+.typing{
+display:inline-flex;
+gap:4px;
+}
+
+.dot{
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+animation:blink 1.4s infinite both;
+}
+
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+
+@keyframes blink{
+0%{opacity:.2}
+20%{opacity:1}
+100%{opacity:.2}
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+#chat{
+height:55vh;
+}
+
+input{
+font-size:15px;
+}
+
+}
+
+</style>
+</head>
+
+<body class="dark">
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+<div class="clock" id="clock"></div>
+
+<button class="toggle-btn" onclick="toggleTheme()">
+<i class="fas fa-adjust"></i>
+</button>
+</div>
+
+<div class="container">
+
+<div id="chat"></div>
+
+<div class="input-row">
+<input id="input" placeholder="Type message...">
+<button onclick="send()">Send</button>
+<button onclick="voice()"><i class="fas fa-microphone"></i></button>
+</div>
+
+</div>
+
+<script>
+
+/* CLOCK */
+
+function clock(){
+clockEl.innerText=new Date().toLocaleTimeString();
+}
+setInterval(clock,1000);
+clock();
+
+/* THEME */
+
+function toggleTheme(){
+
+let mode=document.body.classList.contains("dark")?"light":"dark";
+
+document.body.className=mode;
+localStorage.setItem("theme",mode);
+
+}
+
+/* LOAD THEME */
+
+let savedTheme=localStorage.getItem("theme")||"dark";
+document.body.className=savedTheme;
+
+/* CHAT MEMORY */
+
+const chatBox=document.getElementById("chat");
+
+function saveChat(){
+localStorage.setItem("chat",chatBox.innerHTML);
+}
+
+function loadChat(){
+let saved=localStorage.getItem("chat");
+if(saved) chatBox.innerHTML=saved;
+else bot("Hello 👋 I'm your AI Assistant");
+}
+
+loadChat();
+
+/* MESSAGE */
+
+function user(msg){
+let d=document.createElement("div");
+d.className="msg user";
+d.innerText=msg;
+chatBox.appendChild(d);
+saveChat();
+scroll();
+}
+
+function bot(msg){
+
+let d=document.createElement("div");
+d.className="msg bot";
+d.innerText=msg;
+chatBox.appendChild(d);
+saveChat();
+scroll();
+}
+
+/* TYPING EFFECT */
+
+function botTyping(callback){
+
+let t=document.createElement("div");
+t.className="msg bot";
+
+t.innerHTML=`<div class="typing">
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+</div>`;
+
+chatBox.appendChild(t);
+scroll();
+
+setTimeout(()=>{
+chatBox.removeChild(t);
+callback();
+},900);
+
+}
+
+/* SEND */
+
+function send(){
+
+let val=input.value.trim();
+if(!val) return;
+
+user(val);
+input.value="";
+
+botTyping(()=>reply(val));
+
+}
+
+/* AI LOGIC */
+
+function reply(text){
+
+text=text.toLowerCase();
+
+if(text=="hello"||text=="hi"){
+bot("Hello! How can I help?");
+return;
+}
+
+if(/^[0-9+\-*/(). ]+$/.test(text)){
+try{
+bot("Answer: "+eval(text));
+}catch{
+bot("Invalid math");
+}
+return;
+}
+
+if(text.includes("time")){
+bot("Time: "+new Date().toLocaleTimeString());
+return;
+}
+
+bot("I heard: "+text);
+
+}
+
+/* SCROLL */
+
+function scroll(){
+chatBox.scrollTop=chatBox.scrollHeight;
+}
+
+/* VOICE */
+
+function voice(){
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+
+if(!SR){
+bot("Speech not supported");
+return;
+}
+
+let rec=new SR();
+rec.lang="en-US";
+
+rec.onresult=e=>{
+input.value=e.results[0][0].transcript;
+send();
+};
+
+rec.start();
+}
+
+/* ENTER KEY */
+
+input.addEventListener("keydown",e=>{
+if(e.key=="Enter") send();
+});
+
+/* ---------- PWA INSTALL ---------- */
+
+if("serviceWorker" in navigator){
+
+const swCode=`
+self.addEventListener("install",e=>{
+e.waitUntil(
+caches.open("ai-cache").then(c=>{
+return c.addAll(["./"]);
+})
+);
+});
+
+self.addEventListener("fetch",e=>{
+e.respondWith(
+caches.match(e.request).then(r=>{
+return r||fetch(e.request);
+})
+);
+});
+`;
+
+const blob=new Blob([swCode],{type:"text/javascript"});
+const swURL=URL.createObjectURL(blob);
+
+navigator.serviceWorker.register(swURL);
+
+}
+
+</script>
+
+</body>
+</html>
